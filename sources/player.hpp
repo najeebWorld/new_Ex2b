@@ -26,11 +26,12 @@ namespace ariel{
 
             vector <card> getDeck();
             void setDeck(card c1);
-            int cardsTaken();//prints the cards that this player won. 
+           // int cardsTaken();//prints the cards that this player won. 
             string getName();//return the name 
             void setName(string name);
-           // void addCard(card c);//add card to the player
             card getcard();
+            int getWins();
+            void setWins();
 
             void addWinCards(int win);
             void removeCard();
@@ -42,6 +43,7 @@ namespace ariel{
             vector <card> cards;
             bool playing;
             int cards_win, cards_go;
+            int wins;
     };
 
 }

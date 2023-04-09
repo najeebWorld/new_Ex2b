@@ -142,7 +142,24 @@ void Game::playAll(){
             log += lastTurn +"\n";
         }
         
+        if(playerP1.cardsWin() > playerP2.cardsWin())
+        {
+            playerP1.setWins();
+            winner =playerP1.getName();
+        }
+        if(playerP1.cardsWin() < playerP2.cardsWin())
+        {
+            playerP2.setWins();
+            winner = playerP2.getName();
+        }
 
+        playerP1.setCardsWin(0);
+        playerP2.setCardsWin(0);
+
+    }
+    catch (std ::exception& e)
+    {
+        throw std ::runtime_error("error happen durring the game" + std::string (e.what()));
     }
 }
 
@@ -150,5 +167,8 @@ void Game::printWiner(){}
 
 void Game::printLog(){}
 
-void Game::printStats(){}
+void Game::printStats(){
+
+    
+}
 

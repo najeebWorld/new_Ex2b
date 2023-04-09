@@ -97,5 +97,14 @@ void Player::setName(string name){
 void Player::addWinCards(int win){
      this->cards_win += win;
 }
+int Player :: getWins()
+{
+    return this->wins;
 }
+
+void Player ::setWins()
+{
+    this->wins++;
+}
+
 
