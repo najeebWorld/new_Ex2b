@@ -13,7 +13,7 @@ using namespace ariel;
 
  Game::Game(Player &p1,Player &p2) : playerP1(p1),playerP2(p2){
     try{
-        
+        shuffle();
     }
 
     catch(const std ::exception& e){
@@ -163,13 +163,51 @@ void Game::playAll(){
     }
 }
 
-void Game::printWiner(){}
+void Game::printWiner(){
+    try
+    {
+        std :: cout <<"The winner is :" +winner <<std::endl;
 
-void Game::printLog(){}
+
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+}
+
+void Game::printLog(){
+    try
+    {
+        std ::cout << log <<std ::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+}
 
 void Game::printStats(){
+    try
+    {
+        std :: cout <<"the first player is : " << playerP1.getName()<<std ::endl;
+        std :: cout << "the first player wins is :" <<playerP1.cards_win() <<std::endl;
+        // double winRate = (double)(playerP1.getWins()/playerP1.getWins());
+        // std::cout <<"The win rate is : "<< winRate<< std::endl;
+
+        std::cout <<"the secound player is : "<<playerP2.getName()<<std::endl;
+        std::cout <<"the secound player wins is : " <<playerP2.cardsWin()<<std::endl;
 
 
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
 }
+
 
 

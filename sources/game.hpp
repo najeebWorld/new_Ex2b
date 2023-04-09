@@ -19,11 +19,11 @@
             /* each player has at least one card in his hand
             a compraison made between the two cards, if they
             have the same value , we will start "war"*/
-            int war();//the war, return 1 of
+            //int war();//the war, return 1 of
             //player 1 is the winner, 2 else.
-            void winner();//return the winner
+            //void winner();//return the winner
             void printLastTurn();
-
+            void shuffle();
             void playAll(); //playes the game untill the end
             void printWiner(); // prints the name of the winning player
             void printLog(); // prints all the turns played one line per turn (same format as game.printLastTurn())
