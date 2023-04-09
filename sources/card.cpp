@@ -24,6 +24,7 @@
 			case 'D' : return diamonds;
 			case 'H' : return hearts;
 		}
+		return spades;
 	 }//return type1; }
 
 	int card::getValue(string s) { 

@@ -145,12 +145,12 @@ void Game::playAll(){
         if(playerP1.cardsWin() > playerP2.cardsWin())
         {
             playerP1.setWins();
-            winner =playerP1.getName();
+            Winner =playerP1.getName();
         }
         if(playerP1.cardsWin() < playerP2.cardsWin())
         {
             playerP2.setWins();
-            winner = playerP2.getName();
+            Winner = playerP2.getName();
         }
 
         playerP1.setCardsWin(0);
@@ -169,6 +169,7 @@ void Game::printLog(){}
 
 void Game::printStats(){
 
-    
+
 }
+
 

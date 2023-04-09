@@ -46,9 +46,9 @@ int Player :: stacksize(){
     return this->cards_go;
 }
 
-int Player :: cardsWin(){
-    return this->cards_win;
-}
+// int Player :: cardsWin(){
+//     return this->cards_win;
+// }
 
 card Player :: getcard(){
     card c1 = cards.front();
@@ -74,9 +74,9 @@ string Player::getName(){
     
     return this->name;
 }
-void Player::setName(string name){
-    this->name =name; 
-}
+// void Player::setName(string name){
+//     this->name =name; 
+// }
 
 
 

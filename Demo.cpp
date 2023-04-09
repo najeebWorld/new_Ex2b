@@ -10,11 +10,11 @@
 #include <sstream>
 #include <stdexcept>
 
-using namespace ariel;
 
 #include "sources/player.hpp"
 #include "sources/game.hpp"
 #include "sources/card.hpp"
+using namespace ariel;
 
 int main() {
   // Create two players with their names 

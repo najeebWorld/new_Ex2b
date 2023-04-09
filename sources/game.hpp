@@ -43,6 +43,7 @@
             Player & playerP2;
             string lastTurn;
             string log; 
+            string Winner;
            // string p1,p2;
            
 

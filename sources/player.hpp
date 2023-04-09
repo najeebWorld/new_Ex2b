@@ -42,7 +42,7 @@ namespace ariel{
             string name;
             vector <card> cards;
             bool playing;
-            int cards_win, cards_go;
+            int cards_win , cards_go;
             int wins;
     };
 
