@@ -2,12 +2,9 @@
 #include <iostream>
 
 #include <string>
-using namespace std;
 
 
-
-	//card :: card(){}//default constractor
-using namespace ariel;
+ namespace ariel{
 
 	card :: card (Type1 t, Value v){// constractor that get the type& value of card.
 		this->type1 = t; 
@@ -95,4 +92,4 @@ using namespace ariel;
 	
 	// string card::name() { return valueName (faceValue) + " of " + typename1(type1);}
 	//string card::name() { return "";}
-
+}

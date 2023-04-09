@@ -10,7 +10,7 @@ the card.
 
 
 using namespace std;
-using namespace ariel;
+ namespace ariel{
 
 
 
@@ -44,4 +44,4 @@ enum Type1{clubs, diamonds, hearts, spades};
 
             
     };
- 
+ }

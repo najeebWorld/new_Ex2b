@@ -7,10 +7,7 @@
 
 #include "player.hpp"
 
-using namespace std;
-
-using namespace ariel ;
-
+ namespace ariel{
     class Game {
         
         public : 
@@ -45,6 +42,7 @@ using namespace ariel ;
             Player & playerP1;
             Player & playerP2;
             string lastTurn;
+            string log; 
            // string p1,p2;
            
 
@@ -55,3 +53,5 @@ using namespace ariel ;
 
 
     };
+ }
+ 

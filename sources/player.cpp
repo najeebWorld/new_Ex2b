@@ -5,12 +5,10 @@
 #include <vector>
 #include <algorithm>
 #include "game.hpp"
-#include <stack>
 
 
 using namespace std;
 using namespace ariel;
-
 //vector <card> deck;
 
 const int typs = 4;
@@ -48,7 +46,7 @@ int Player :: stacksize(){
     return this->cards_go;
 }
 
-int Player :: cardsWin (){
+int Player :: cardsWin(){
     return this->cards_win;
 }
 
@@ -98,5 +96,6 @@ void Player::setName(string name){
 
 void Player::addWinCards(int win){
      this->cards_win += win;
-}    
+}
+}
 

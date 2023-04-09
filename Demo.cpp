@@ -9,7 +9,8 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
-using namespace std;
+
+using namespace ariel;
 
 #include "sources/player.hpp"
 #include "sources/game.hpp"

@@ -5,7 +5,7 @@
 
 
 using namespace std;
-using namespace ariel;
+namespace ariel{
 
 //using namespace ariel;
     class Player {
@@ -20,7 +20,7 @@ using namespace ariel;
             //void shuffle();//Mixes the cards
             int cardesTaken();
             int cardsGo();
-            void setCardsGo(int cards);
+            //void setCardsGo(int cards);
             int cardsWin();
             void setCardsWin(int cards);
 
@@ -44,4 +44,4 @@ using namespace ariel;
             int cards_win, cards_go;
     };
 
-
+}

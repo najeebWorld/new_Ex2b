@@ -9,7 +9,7 @@
 #define max_cards = 52;
 
 using namespace std;
-using namespace ariel ;
+using namespace ariel;
 
  Game::Game(Player &p1,Player &p2) : playerP1(p1),playerP2(p2){
     try{
@@ -120,12 +120,35 @@ void Game::playTurn(){
 
 }}
 
-void Game::printLastTurn(){}
+void Game::printLastTurn(){
 
-void Game::playAll(){}
+    try{
+        std :: cout << lastTurn << std::endl;
+    }
+
+    catch (std::exception& e){
+        throw std::runtime_error ("somthing happen with the last turn");
+    }
+    
+}
+
+void Game::playAll(){
+
+    try{
+        while (playerP1.getDeck().size() || playerP2.getDeck().size())
+        
+        {
+            playTurn();
+            log += lastTurn +"\n";
+        }
+        
+
+    }
+}
 
 void Game::printWiner(){}
 
 void Game::printLog(){}
 
 void Game::printStats(){}
+
