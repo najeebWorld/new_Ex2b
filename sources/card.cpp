@@ -7,7 +7,7 @@
  namespace ariel{
 
 	card :: card(){};
-	card :: card (Type1 t, Value v){// constractor that get the type& value of card.
+	card :: card (Value v, Type1 t){// constractor that get the type& value of card.
 		this->type1 = t; 
 		this->faceValue = v ;
 	}

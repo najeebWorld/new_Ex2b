@@ -27,7 +27,7 @@ enum Type1{clubs, diamonds, hearts, spades};
 		card();
         // card (Value faceValue=deuce, Type1 type1 = clubs):
 		// type1(type1), faceValue(faceValue) {}
-		card(Type1 t,Value v);
+		card(Value v,Type1 t);
 		
 		//card(char s, int v);
 
