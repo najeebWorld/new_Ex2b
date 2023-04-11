@@ -46,6 +46,8 @@ int Player :: stacksize(){
     return this->cards_go;
 }
 
+
+
 // int Player :: cardsWin(){
 //     return this->cards_win;
 // }

@@ -19,14 +19,27 @@ using namespace ariel;
         std::cout <<"start" << std ::endl;
          Deck = fulldeck();
          Deck= shuffle(Deck);
+         shareCards();
          lastTurn ="";
          Winner = "";
          log = "";
+        
     
-     p1.stacksize(26);
-     p2.stacksize(26);
+    //  p1.stacksize(26);
+    //  p2.stacksize(26);
 
  }
+
+ void Game::shareCards(){
+    std::vector<card>::size_type size = Deck.size();
+
+    for(std::vector<card>::size_type i = 0; i < size / 2; i++){
+        playerP1.cards.push_back(Deck[i]);
+        Deck.pop_back();
+        playerP2.cards.push_back(Deck[i + size / 2]);
+        Deck.pop_back();
+    }
+}
 
 void Game::playTurn(){
     if(playerP1.stacksize() == 0 || playerP2.stacksize() == 0)
