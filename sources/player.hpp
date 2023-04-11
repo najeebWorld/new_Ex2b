@@ -23,7 +23,7 @@ namespace ariel{
             //void setCardsGo(int cards);
             int cardsWin();
             void setCardsWin(int cards);
-
+            
             vector <card> getDeck();
             void setDeck(card c1);
            // int cardsTaken();//prints the cards that this player won. 
@@ -34,7 +34,7 @@ namespace ariel{
             void setWins();
 
             void addWinCards(int win);
-            void removeCard();
+            //void removeCard();
             void setCardsGo(int number);           
             bool isPlaying();
             void setStatusPlay(bool turn);//set if the player is playing or not

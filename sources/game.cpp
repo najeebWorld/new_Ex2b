@@ -4,24 +4,27 @@
 #include <stdexcept>
 #include <string>
 #include <random>
-
+#include <time.h>
+#include "card.hpp"
+#include <cstdlib>
 
 #define max_cards = 52;
 
 using namespace std;
 using namespace ariel;
 
+//Game :: Game(){}
+
  Game::Game(Player &p1,Player &p2) : playerP1(p1),playerP2(p2){
-    try{
-        shuffle();
-    }
-
-    catch(const std ::exception& e){
-        std :: cerr <<"Error with random card : "<<e.what()<<'\n';
-    }
-
-    playerP1.stacksize(26);
-    playerP2.stacksize(26);
+        std::cout <<"start" << std ::endl;
+         Deck = fulldeck();
+         Deck= shuffle(Deck);
+         lastTurn ="";
+         Winner = "";
+         log = "";
+    
+     p1.stacksize(26);
+     p2.stacksize(26);
 
  }
 
@@ -166,7 +169,7 @@ void Game::playAll(){
 void Game::printWiner(){
     try
     {
-        std :: cout <<"The winner is :" +winner <<std::endl;
+        std :: cout <<"The winner is :" +Winner <<std::endl;
 
 
     }
@@ -189,11 +192,62 @@ void Game::printLog(){
     
 }
 
+vector <card> Game:: swapp(vector <card> deck, size_t i, size_t j) {
+    card flag = deck[i];
+    deck[i] = deck[j];
+    deck[j] = flag;
+    return deck;
+}
+
+vector <card> Game::shuffle(vector <card> deck) {
+    srand(time(0));
+    vector <card> flag;
+    for (size_t i = 0; i < deck.size(); i++) {
+
+        size_t j = i + ((unsigned long)rand() % (deck.size() - i));
+        flag = deck;
+        deck = swapp(flag,i,j);
+        //swapp(deck[k], deck[r]);
+    }
+    return deck;
+}
+
+// void Game::createDeck() {
+//     string Types [4] = {"Hart", "Diamond", "Spades", "Clubs"};
+//     card temp;
+//     for (int i = 0; i < 4; i++) {
+//         for (int j = 2; j < 15; j++) {
+//             // card temp(j, _shape[i]);
+//             // Deck.push_back(temp);
+//             char ch = Types[i].at(0);
+//             temp(typ,j);
+//             //temp(j,shape[i]);
+//             Deck.emplace_back(temp);            
+            
+//         }
+//     }
+// }
+
+vector <card> Game::fulldeck(){
+    std :: cout <<"full 1" << std::endl;
+    // enum Value{ace = 1 ,two  , three  , four , five  , six ,seven , eight  , nine  , ten , jack , queen , king  };
+    // enum Type1{clubs, diamonds, hearts, spades};
+
+    for(int val= ace ; val<= king; val++){
+        for(int typ =clubs ; typ<= spades ;typ++){
+
+            Deck.emplace_back(card(Value(val),Type1(typ)));
+        }
+    }
+    return Deck;
+
+}
+
 void Game::printStats(){
     try
     {
         std :: cout <<"the first player is : " << playerP1.getName()<<std ::endl;
-        std :: cout << "the first player wins is :" <<playerP1.cards_win() <<std::endl;
+        std :: cout << "the first player wins is :" << + playerP1.cardsWin() <<std::endl;
         // double winRate = (double)(playerP1.getWins()/playerP1.getWins());
         // std::cout <<"The win rate is : "<< winRate<< std::endl;
 
@@ -208,6 +262,8 @@ void Game::printStats(){
     }
     
 }
+
+
 
 
 

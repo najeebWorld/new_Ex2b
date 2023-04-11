@@ -6,15 +6,16 @@
 
  namespace ariel{
 
+	card :: card(){};
 	card :: card (Type1 t, Value v){// constractor that get the type& value of card.
 		this->type1 = t; 
 		this->faceValue = v ;
 	}
 	
-	card :: card (char s, int v){
-		this->su= s;
-		this->va=v ; 
-	}
+	// card :: card (char s, int v){
+	// 	this->su= s;
+	// 	this->va=v ; 
+	// }
 
 	Type1 card::getSuit(char s) { 
 		switch (s)

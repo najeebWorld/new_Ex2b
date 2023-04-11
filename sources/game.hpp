@@ -14,21 +14,16 @@
             Game();//default constructor.
             Game(Player & p1,Player & p2) ;
             void playTurn();//play the game.
-            void getNames();//get the names of two players.
-            void battle();
-            /* each player has at least one card in his hand
-            a compraison made between the two cards, if they
-            have the same value , we will start "war"*/
-            //int war();//the war, return 1 of
-            //player 1 is the winner, 2 else.
-            //void winner();//return the winner
+            vector <card> fulldeck();
             void printLastTurn();
-            void shuffle();
+            vector <card> shuffle(vector <card> deck);
+            vector <card> swapp(vector <card> deck,size_t i,size_t j) ;
+            void createDeck();
             void playAll(); //playes the game untill the end
             void printWiner(); // prints the name of the winning player
             void printLog(); // prints all the turns played one line per turn (same format as game.printLastTurn())
             void printStats();
-            vector <string> players();//retuen the players
+            //vector <string> players();//retuen the players
             
             //int playerSize();//return the size of players
            // Player playerP1,playerP2;
@@ -45,6 +40,7 @@
             string log; 
             string Winner;
            // string p1,p2;
+           vector <card> Deck;
            
 
 

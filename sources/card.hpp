@@ -15,21 +15,21 @@ using namespace std;
 
 
 
-enum Value{two  , three  , four , five  , six ,seven , eight  , nine  , ten , jack , queen , king , ace };
+enum Value{ace = 1 ,two  , three  , four , five  , six ,seven , eight  , nine  , ten , jack , queen , king  };
 enum Type1{clubs, diamonds, hearts, spades};
 
 
     class card {
 
     public : 
-		char su;
-		int va; 
+		char suit;
+		int value; 
 		card();
         // card (Value faceValue=deuce, Type1 type1 = clubs):
 		// type1(type1), faceValue(faceValue) {}
 		card(Type1 t,Value v);
 		
-		card(char s, int v);
+		//card(char s, int v);
 
 		
 	    Type1 getSuit(char s);
