@@ -52,7 +52,7 @@ int Player :: stacksize(){
 //     return this->cards_win;
 // }
 
-card Player :: getcard(){
+card Player::getcard(vector <card> cardes){
     card c1 = cards.front();
     cards.erase(cards.begin());
     return c1;

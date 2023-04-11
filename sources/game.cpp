@@ -23,10 +23,8 @@ using namespace ariel;
          lastTurn ="";
          Winner = "";
          log = "";
-        
-    
-    //  p1.stacksize(26);
-    //  p2.stacksize(26);
+         countGame=0; 
+
 
  }
 
@@ -42,25 +40,27 @@ using namespace ariel;
 }
 
 void Game::playTurn(){
-    if(playerP1.stacksize() == 0 || playerP2.stacksize() == 0)
+
+    bool flag = true;
+    card c1,c2;
+
+    while(flag)
+    {
+        if(playerP1.stacksize() == 0 || playerP2.stacksize() == 0)
     {
         throw std::runtime_error("game over");
+        break;
 
     }
     if(playerP1.stacksize()==0 && playerP2.stacksize() != 0)
     {
         throw std::runtime_error(playerP1.getName() + "dont have cards");
+        break;
     }
     if(playerP2.stacksize()==0 && playerP1.stacksize() != 0)
     {
         throw std :: runtime_error(playerP2.getName() + "dont have cards");
     }
-
-    //need to add here defination if they both have the same size of cards
-    //should try &playerp1 == &playerp2
-    
-
-    //if they both can play thr turn 
 
     try {
 
@@ -134,7 +134,8 @@ void Game::playTurn(){
         
 
 
-}}
+}}}
+
 
 void Game::printLastTurn(){
 
@@ -145,8 +146,12 @@ void Game::printLastTurn(){
     catch (std::exception& e){
         throw std::runtime_error ("somthing happen with the last turn");
     }
+
+
+    }
     
-}
+    
+
 
 void Game::playAll(){
 
