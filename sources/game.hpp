@@ -38,8 +38,8 @@
             string lastTurn;
             string log; 
             string Winner;
-           // string p1,p2;
            vector <card> Deck;
+           int countGame; 
            
 
 

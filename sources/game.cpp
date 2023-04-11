@@ -64,8 +64,8 @@ void Game::playTurn(){
 
     try {
 
-        card turnCard1 = playerP1.getcard();
-        card turnCard2 = playerP2.getcard();
+        card turnCard1 = playerP1.getcard(playerP1.cards);
+        card turnCard2 = playerP2.getcard(playerP2.cards);
         
         Value v = turnCard1.faceValue;
         Value v2 = turnCard2.faceValue;
@@ -91,8 +91,8 @@ void Game::playTurn(){
 
             cout << " new war has begin"<< std::endl;
             for(int i =0 ; i <4 ; i++){
-                turnCard1 = playerP1.getcard();
-                turnCard2 = playerP2.getcard();
+                turnCard1 = playerP1.getcard(playerP1.cards);
+                turnCard2 = playerP2.getcard(playerP2.cards);
 
                 Value v1 = turnCard1.faceValue;
                 Value v3 = turnCard2.faceValue;

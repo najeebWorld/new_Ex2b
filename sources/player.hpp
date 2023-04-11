@@ -29,7 +29,7 @@ namespace ariel{
           //  int cardsTaken();//prints the cards that this player won. 
             string getName();//return the name 
             void setName(string name);
-            card getcard();
+            card getcard(vector <card> cardes);
             int getWins();
             void setWins();
             void addWinCards(int win);
