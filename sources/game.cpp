@@ -15,7 +15,13 @@ using namespace ariel;
 
 //Game :: Game(){}
 
- Game::Game(Player &p1,Player &p2) : playerP1(p1),playerP2(p2){
+Game::Game(Player &p1,Player &p2) : playerP1(p1),playerP2(p2){
+    
+    playerP1.setstacksize(26);
+    playerP2.setstacksize(26);
+    playerP1.setcardesTaken(0);
+    playerP2.setcardesTaken(0);
+    try{
         std::cout <<"start" << std ::endl;
          Deck = fulldeck();
          Deck= shuffle(Deck);
@@ -24,9 +30,19 @@ using namespace ariel;
          Winner = "";
          log = "";
          countGame=0; 
-
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr<<"error during strating the game" <<e.what()<<'\n';
+    }
 
  }
+
+ Game :: ~Game(){
+    cout <<"the game has been deleted"<< std:: endl;
+ }
+
+ 
 
  void Game::shareCards(){
     std::vector<card>::size_type size = Deck.size();
@@ -44,18 +60,19 @@ void Game::playTurn(){
     bool flag = true;
     card c1,c2;
 
-    while(flag)
-    {
+   // while(flag)
+    
         if(playerP1.stacksize() == 0 || playerP2.stacksize() == 0)
     {
         throw std::runtime_error("game over");
-        break;
+        GameOver();
+        
 
     }
     if(playerP1.stacksize()==0 && playerP2.stacksize() != 0)
     {
         throw std::runtime_error(playerP1.getName() + "dont have cards");
-        break;
+        
     }
     if(playerP2.stacksize()==0 && playerP1.stacksize() != 0)
     {
@@ -72,25 +89,27 @@ void Game::playTurn(){
         int num1 = turnCard1.getValue(turnCard1.valueName(v));
         int num2 = turnCard2.getValue(turnCard2.valueName(v2));
 
+
         if(num1>num2){//its happen only when player1 has bigger card than player2
             
-            lastTurn = playerP1.getName() +"played" + turnCard1.valueName(v) + ". "; 
-            lastTurn += playerP2.getName() + "played" + turnCard2.valueName(v) + ". ";
-            lastTurn += playerP1.getName()+ "win this turn";
+            playerP1.setWinNum(2);
+            lastTurn = playerP1.getName() +" played " + turnCard1.valueName(v) + ". "; 
+            lastTurn += playerP2.getName() + " played " + turnCard2.valueName(v2) + ". ";
+            lastTurn += playerP1.getName()+ " win this turn ";
         }
         if(num1< num2){
-
-            lastTurn = playerP2.getName() + "played" + turnCard2.valueName(v)+ ". ";
-            lastTurn += playerP1.getName() +  "played" + turnCard1.valueName(v) + ". ";
-            lastTurn += playerP2.getName()+ "win this turn";
+            
+            playerP2.setWinNum(2);
+            lastTurn = playerP2.getName() + " played " + turnCard2.valueName(v2) + " . ";
+            lastTurn += playerP1.getName() +  " played " + turnCard1.valueName(v) + " . ";
+            lastTurn += playerP2.getName()+ " win this turn ";
 
         }
         else if(num1 == num2){
             
             int war = 1;
 
-            cout << " new war has begin"<< std::endl;
-            for(int i =0 ; i <4 ; i++){
+            for(int i =0 ; i < 4 ; i++){
                 turnCard1 = playerP1.getcard(playerP1.cards);
                 turnCard2 = playerP2.getcard(playerP2.cards);
 
@@ -100,41 +119,42 @@ void Game::playTurn(){
                 int num3 = turnCard2.getValue(turnCard2.valueName(v3));
 
                 if(i == 3 && num2==num3){
+                    i=0;
                     war++;
-                    cout << " new war has begin"<< std::endl;
 
                 }
             }
-
+            //player 1 win the war 
             if(turnCard1.getValue(turnCard1.valueName(turnCard1.faceValue)) > turnCard2.getValue(turnCard2.valueName(turnCard2.faceValue))){
-                playerP1.setCardsWin(10*war);
-
-                lastTurn = playerP1.getName() + "played" + turnCard2.valueName(v)+ ". ";
-                lastTurn += playerP2.getName() +  "played" + turnCard1.valueName(v) + ". ";
-                lastTurn += playerP1.getName()+ "win this war";
-                cout << playerP1.getName() + "win this war" << std::endl;
+                
+                playerP1.setWinNum(10*war);
+                lastTurn = playerP1.getName() + " played " + turnCard2.valueName(v)+ ". ";
+                lastTurn += playerP2.getName() +  " played " + turnCard1.valueName(v) + ". ";
+                lastTurn += playerP1.getName()+ " win this war ";
+                cout << playerP1.getName() + " win this war " << std::endl;
             }
-
+            //player 2 win the war
             else if(turnCard1.getValue(turnCard1.valueName(turnCard1.faceValue)) < turnCard2.getValue(turnCard1.valueName(turnCard2.faceValue))){
                 
-                playerP2.setCardsWin(10*war);
-
-                lastTurn = playerP2.getName() + "played" + turnCard2.valueName(v)+ ". ";
-                lastTurn += playerP1.getName() +  "played" + turnCard1.valueName(v) + ". ";
-                lastTurn += playerP2.getName()+ "win this war";
-                cout << playerP2.getName() + "win this war" << std::endl;
+                playerP2.setWinNum(10*war);
+                lastTurn = playerP2.getName() + " played " + turnCard2.valueName(v)+ ". ";
+                lastTurn += playerP1.getName() +  " played " + turnCard1.valueName(v) + ". ";
+                lastTurn += playerP2.getName()+ " win this war ";
+                cout << playerP2.getName() + " win this war " << std::endl;
         }
 
 
     }
 
     }
-    catch (const std:: exception& e){
+    
+    
+        catch (const std:: exception& e){
         std::cerr<<"Somthing happen in the game : " <<e.what()<<std::endl;
-        
+    }
 
 
-}}}
+}
 
 
 void Game::printLastTurn(){
@@ -156,26 +176,26 @@ void Game::printLastTurn(){
 void Game::playAll(){
 
     try{
-        while (playerP1.getDeck().size() || playerP2.getDeck().size())
+        while (playerP1.getDeck().size() > 0 || playerP2.getDeck().size() > 0)
         
         {
             playTurn();
             log += lastTurn +"\n";
         }
         
-        if(playerP1.cardsWin() > playerP2.cardsWin())
+        if(playerP1.getWinNum() > playerP2.getWinNum())
         {
-            playerP1.setWins();
+            playerP1.setSuccess();
             Winner =playerP1.getName();
         }
-        if(playerP1.cardsWin() < playerP2.cardsWin())
+        if(playerP1.getWinNum() < playerP2.getWinNum())
         {
-            playerP2.setWins();
+            playerP2.setSuccess();
             Winner = playerP2.getName();
         }
 
-        playerP1.setCardsWin(0);
-        playerP2.setCardsWin(0);
+        playerP1.setcardesTaken(0);
+        playerP2.setcardesTaken(0);
 
     }
     catch (std ::exception& e)
@@ -230,21 +250,7 @@ vector <card> Game::shuffle(vector <card> deck) {
     return deck;
 }
 
-// void Game::createDeck() {
-//     string Types [4] = {"Hart", "Diamond", "Spades", "Clubs"};
-//     card temp;
-//     for (int i = 0; i < 4; i++) {
-//         for (int j = 2; j < 15; j++) {
-//             // card temp(j, _shape[i]);
-//             // Deck.push_back(temp);
-//             char ch = Types[i].at(0);
-//             temp(typ,j);
-//             //temp(j,shape[i]);
-//             Deck.emplace_back(temp);            
-            
-//         }
-//     }
-// }
+
 
 vector <card> Game::fulldeck(){
     std :: cout <<"full 1" << std::endl;
@@ -265,12 +271,12 @@ void Game::printStats(){
     try
     {
         std :: cout <<"the first player is : " << playerP1.getName()<<std ::endl;
-        std :: cout << "the first player wins is :" << + playerP1.cardsWin() <<std::endl;
+        //std :: cout << "the first player wins is :" << + playerP1.cardsWin() <<std::endl;
         // double winRate = (double)(playerP1.getWins()/playerP1.getWins());
         // std::cout <<"The win rate is : "<< winRate<< std::endl;
 
         std::cout <<"the secound player is : "<<playerP2.getName()<<std::endl;
-        std::cout <<"the secound player wins is : " <<playerP2.cardsWin()<<std::endl;
+        //std::cout <<"the secound player wins is : " <<playerP2.()<<std::endl;
 
 
     }
@@ -280,6 +286,11 @@ void Game::printStats(){
     }
     
 }
+void Game::GameOver(){
+    cout<<"reset the game"<<std::endl;
+    playerP1.setstacksize(0);
+    playerP2.setcardesTaken(0);
+ };
 
 
 

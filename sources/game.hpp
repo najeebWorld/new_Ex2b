@@ -11,24 +11,25 @@
     class Game {
         
         public : 
-            Game();//default constructor.
-            Game(Player & p1,Player & p2) ;
+            ~Game();//default constructor.
+            Game(Player & ply1,Player & ply2) ;
             void playTurn();//play the game.
             vector <card> fulldeck();
             void printLastTurn();
             vector <card> shuffle(vector <card> deck);
-            vector <card> swapp(vector <card> deck,size_t i,size_t j) ;
+            vector <card> swapp(vector <card> deck,size_t ind,size_t par) ;
             //void createDeck();
             void shareCards();
-
+            void GameOver();
             void playAll(); //playes the game untill the end
             void printWiner(); // prints the name of the winning player
             void printLog(); // prints all the turns played one line per turn (same format as game.printLastTurn())
             void printStats();
 
-            int rounds; //maybe I will not use them 
-            int Max_rounds;
-           
+            //int rounds; //maybe I will not use them 
+            //int Max_rounds;
+            vector <card> Deck;
+
 
 
         private:
@@ -38,8 +39,8 @@
             string lastTurn;
             string log; 
             string Winner;
-           vector <card> Deck;
-           int countGame; 
+            //vector <card> Deck;
+            int countGame; 
            
 
 

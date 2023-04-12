@@ -10,39 +10,34 @@ namespace ariel{
 //using namespace ariel;
     class Player {
         public: 
-            Player();//default constractor
             Player(string name);
-            // Player(char* name) : name(name){} 
-            void stacksize(int n);
-            int stacksize();
 
-            //Player fullSize();//creat player with full cards
-            //void shuffle();//Mixes the cards
             int cardesTaken();
-            int cardsGo();
-            //void setCardsGo(int cards);
-            int cardsWin();
-            void setCardsWin(int cards);
-            
+            int stacksize();
+            void setcardesTaken(int cards);
+            void setstacksize(int number);           
+
             vector <card> getDeck();
-            void setDeck(card c1);
-          //  int cardsTaken();//prints the cards that this player won. 
+            void addtoDeck(card card1);
+
             string getName();//return the name 
             void setName(string name);
+
             card getcard(vector <card> cardes);
-            int getWins();
-            void setWins();
-            void addWinCards(int win);
-            void setCardsGo(int number);           
+            void setSuccess();
+
             bool isPlaying();
             void setStatusPlay(bool turn);//set if the player is playing or not
             vector <card> cards;
-
+            void setWinNum(int num);
+            int getWinNum();
         private:
             string name;
             bool playing;
-            int cards_win , cards_go;
-            int wins;
+            int cards_win , cards_left;
+            int winNum;
+            int success; 
+
     };
 
 }

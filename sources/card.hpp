@@ -27,15 +27,15 @@ enum Type1{clubs, diamonds, hearts, spades};
 		card();
         // card (Value faceValue=deuce, Type1 type1 = clubs):
 		// type1(type1), faceValue(faceValue) {}
-		card(Value v,Type1 t);
+		card(Value val,Type1 typ);
 		
 		//card(char s, int v);
 
 		
-	    Type1 getSuit(char s);
-	    int getValue(string s);
-	    string typename1(Type1 s);
-	    string valueName(Value v);
+	    Type1 getSuit(char sui);
+	    int getValue(string val);
+	    string typename1(Type1 typ);
+	    string valueName(Value val);
 		Type1 type1;
 		Value faceValue;
 	    //string name();

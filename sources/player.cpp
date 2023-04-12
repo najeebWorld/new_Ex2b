@@ -9,59 +9,39 @@
 
 using namespace std;
 using namespace ariel;
-//vector <card> deck;
 
-const int typs = 4;
-const int val = 13; 
-
-Player::Player(string name){
-    this->name = name;
-    this->cards_go = 0;//new player has no cards lose
-
- }
+Player::Player(string name):name(name),cards_left(0),cards_win(0){}
+    
+ 
     
 
+void Player :: setcardesTaken(int cards){
+    this->cards_win +=cards;
+}
 
 int Player::cardesTaken(){
     return this->cards_win;
 }
-int Player::cardsGo(){
-    return this->cards_go;
+int Player::stacksize(){
+    return this->cards_left;
 }
 
-void Player :: setCardsGo (int cards){
-    this->cards_go = cards;
+void Player :: setstacksize (int cards){
+    this->cards_left = cards;
 }
-
-int Player::cardsWin(){
-    return this->cards_win;
-}
- 
-void Player::stacksize(int n){
-     this->cards_go = n;
-}
-
-int Player :: stacksize(){
-
-    return this->cards_go;
-}
-
-
-
-// int Player :: cardsWin(){
-//     return this->cards_win;
-// }
 
 card Player::getcard(vector <card> cardes){
-    card c1 = cards.front();
-    cards.erase(cards.begin());
+    if(cardes.empty())
+    {
+        throw std::out_of_range("there is no cards");
+    }
+    card c1 = cardes.front();
+    cards.erase(cardes.begin());
     return c1;
 
-}
+}//get thr firsr card and remove it from the vector
 
-void Player :: setCardsWin(int cards){
-    this->cards_win +=cards;
-}
+
 
 void Player::setName(string name){
     this->name = name;
@@ -71,15 +51,25 @@ vector <card> Player :: getDeck(){
     return this->cards;
 }
 
+void Player::setWinNum(int num)
+{
+    winNum +=num;
+}
+
+int Player::getWinNum()
+{
+    return winNum;
+}
+
 
 string Player::getName(){
     
     return this->name;
 }
-// void Player::setName(string name){
-//     this->name =name; 
-// }
-
+void Player::setSuccess()
+{
+    success++;
+}
 
 
  bool Player::isPlaying(){
@@ -90,23 +80,12 @@ string Player::getName(){
     this->playing = turn;
  }
 
- void Player :: setDeck(card c1){
+ void Player :: addtoDeck(card c1){
     
         this->cards.push_back(c1);
     
  }
 
-void Player::addWinCards(int win){
-     this->cards_win += win;
-}
-int Player :: getWins()
-{
-    return this->wins;
-}
 
-void Player ::setWins()
-{
-    this->wins++;
-}
 
 
