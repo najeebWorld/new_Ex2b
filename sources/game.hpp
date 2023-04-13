@@ -29,11 +29,11 @@
             //int rounds; //maybe I will not use them 
             //int Max_rounds;
 
-        vector <card> Deck;
 
 
         private:
 
+            vector <card> Deck;
             Player & playerP1;
             Player & playerP2;
             string lastTurn;
@@ -42,16 +42,11 @@
             //vector <card> Deck;
             int countGame;
             int war;
-            
-
-           
-
-
-
+    
         
 
 
 
     };
- }
  
+ }

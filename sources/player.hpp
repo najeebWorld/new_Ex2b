@@ -30,8 +30,9 @@ namespace ariel{
             void setWinNum(int num);
             int getWinNum();
             std::vector <card> cards;
-            int cards_Taken ;
+
         private:
+           int cards_Taken ;
             string name;
             bool playing;
             int  cards_left;
