@@ -40,7 +40,8 @@
             string log; 
             string Winner;
             //vector <card> Deck;
-            int countGame; 
+            int countGame;
+            int war;
            
 
 

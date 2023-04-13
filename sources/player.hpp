@@ -34,7 +34,7 @@ namespace ariel{
         private:
             string name;
             bool playing;
-            int cards_win , cards_left;
+            int cards_Taken , cards_left;
             int winNum;
             int success; 
 

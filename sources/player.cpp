@@ -10,17 +10,17 @@
 using namespace std;
 using namespace ariel;
 
-Player::Player(string name):name(name),cards_left(0),cards_win(0){}
+Player::Player(string name):name(name),cards_left(0),cards_Taken(0){}
     
  
     
 
 void Player :: setcardesTaken(int cards){
-    this->cards_win +=cards;
+    this->cards_Taken +=cards;
 }
 
 int Player::cardesTaken(){
-    return this->cards_win;
+    return this->cards_Taken;
 }
 int Player::stacksize(){
     return this->cards_left;
@@ -33,7 +33,7 @@ void Player :: setstacksize (int cards){
 card Player::getcard(vector <card> cardes){
     if(cardes.empty())
     {
-        throw std::out_of_range("there is no cards");
+        throw std::out_of_range("there is no more cards");
     }
     card c1 = cardes.front();
     cards.erase(cardes.begin());
