@@ -19,10 +19,10 @@ Game::Game(Player &p1,Player &p2) : playerP1(p1),playerP2(p2){
     
     playerP1.setstacksize(26);
     playerP2.setstacksize(26);
-    playerP1.setcardesTaken(0);
-    playerP2.setcardesTaken(0);
+    
     try{
         std::cout <<"start" << std ::endl;
+         Deck.clear();
          Deck = fulldeck();
          Deck= shuffle(Deck);
          shareCards();
@@ -68,28 +68,34 @@ void Game::playTurn(){
         throw "the cards are over, please start new game";
     }
     
-    if (&playerP1 == &playerP2)
-    {
-        throw "You cant play against yourself";
-    }
+     if (&playerP1 == &playerP2)
+     {
+         throw "You cant play against yourself";
+     }
 
     int flag = 1;
-    int cardsWon = 0; 
+    int cardsWon = 1; 
     log = "";
-    while (flag)
-    {
-        countGame++;
-        flag = 0;
 
-        card turnCard1;
-        card turnCard2;
+     while (flag)
+     {
+        int size = playerP2.stacksize();
+        int taken = playerP2.cardesTaken();
+        cout<<" "<<taken;
+        //cout<< " "<< taken;
+
+         countGame++;
+         flag = 0;
+
+         card turnCard1;
+         card turnCard2;
 
 
         if(playerP1.stacksize() > 0 && playerP2.stacksize()>0){
             //each players have cards more than 0
             //take one cards from each player
-            turnCard1 = playerP1.getcard(playerP1.cards);
-            turnCard2 = playerP2.getcard(playerP2.cards);
+             turnCard1 = this->playerP1.getcard();
+             turnCard2 = playerP2.getcard();
             cardsWon +=2;
         }
 
@@ -99,16 +105,8 @@ void Game::playTurn(){
                 throw "the cards finished";
             }
 
-           
-            if(cardsWon)
-            {   
-                countGame++;
-                playerP1.setcardesTaken(cardsWon/2);
-                playerP1.setWinNum(1);
-                playerP2.setcardesTaken(cardsWon/2);
-                playerP2.setWinNum(1);
-                break;
-            }
+            playerP1.finishRound(cardsWon/2);
+            playerP1.finishRound(cardsWon/2);
 
             
             Value v = turnCard1.faceValue;
@@ -129,42 +127,36 @@ void Game::playTurn(){
 
                 if(playerP1.stacksize() > 0 && playerP2.stacksize() > 0 )
                 {
-                    turnCard1 = playerP1.getcard(playerP1.cards);
-                    turnCard2 = playerP2.getcard(playerP2.cards);
+                    turnCard1 = playerP1.getcard();
+                    turnCard2 = playerP2.getcard();
                     cardsWon +=2;
                 }
-                else if(cardsWon)
-                {//no more cards for war
-                    countGame++;
-                    playerP1.setcardesTaken(cardsWon/2);
-                    playerP1.setWinNum(1);
-                    playerP2.setcardesTaken(cardsWon/2);
-                    playerP2.setWinNum(1);
-                    flag=0;
+                else 
+                {
+                    playerP1.finishRound(cardsWon/2);
+                    playerP2.finishRound(cardsWon/2);
+                    flag = 0;
                 }
             }
 
             else if (num1 == 1 && num2 != 2 || num1 > num2)
             {
                 log += playerP1.getName() + " Wins this turn.";
-                countGame++;
-                if(cardsWon){
-                     playerP1.setcardesTaken(cardsWon);
-                     playerP1.setWinNum(1);
-                     playerP2.setWinNum(1);  
-                }
+                playerP1.finishRound(cardsWon);
+                playerP2.finishRound(0);
+                
                
             }
             else
             {
                 log += playerP2.getName() + " Wins this turn.";
-                playerP2.setcardesTaken(cardsWon);
-                playerP2.setWinNum(1);
-                playerP1.setWinNum(1);
+                playerP1.finishRound(0);
+                playerP2.finishRound(cardsWon);
             } 
-        }
-        
+        }   
      }}
+     
+     
     
     
 void Game :: printLastTurn(){
@@ -257,7 +249,7 @@ void Game::GameOver(){
     cout<<"reset the game"<<std::endl;
     playerP1.setstacksize(0);
     playerP2.setcardesTaken(0);
- };
+ }
 
 
 
