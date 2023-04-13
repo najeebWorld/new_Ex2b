@@ -22,24 +22,24 @@ namespace ariel{
 
             string getName();//return the name 
             void setName(string name);
-            void finishRound(int i);
+            void finishRound(int ios);
 
             card getcard();
-            void setSuccess();
             bool isPlaying();
             void setStatusPlay(bool turn);//set if the player is playing or not
             void setWinNum(int num);
             int getWinNum();
-
-            int cards_Taken ;
             std::vector <card> cards;
-
+            int cards_Taken ;
         private:
             string name;
             bool playing;
             int  cards_left;
             int winNum;
             int round; 
+            
+
+
 
 
     };

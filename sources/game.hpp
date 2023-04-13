@@ -10,8 +10,8 @@
  namespace ariel{
     class Game {
         
-        public : 
-            ~Game();//default constructor.
+        public :
+            ~Game(); 
             Game(Player & ply1,Player & ply2) ;
             void playTurn();//play the game.
             vector <card> fulldeck();
@@ -28,8 +28,8 @@
 
             //int rounds; //maybe I will not use them 
             //int Max_rounds;
-            vector <card> Deck;
 
+        vector <card> Deck;
 
 
         private:
@@ -42,6 +42,8 @@
             //vector <card> Deck;
             int countGame;
             int war;
+            
+
            
 
 

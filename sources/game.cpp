@@ -38,9 +38,7 @@ Game::Game(Player &p1,Player &p2) : playerP1(p1),playerP2(p2){
 
  }
 
- Game :: ~Game(){
-    cout <<"the game has been deleted"<< std:: endl;
- }
+ 
 
  
 
@@ -54,6 +52,12 @@ Game::Game(Player &p1,Player &p2) : playerP1(p1),playerP2(p2){
         Deck.pop_back();
     }
 }
+
+Game::~Game(){
+    cout<<"thr game has been deleted"<<std::endl;
+}
+
+
 void Game::playAll(){
     while(playerP1.stacksize() > 0)
     {
@@ -61,7 +65,6 @@ void Game::playAll(){
     }
 }
 void Game::playTurn(){
-
 
     if(playerP1.stacksize() == 0 || playerP2.stacksize() == 0)
     {
@@ -74,15 +77,13 @@ void Game::playTurn(){
      }
 
     int flag = 1;
-    int cardsWon = 1; 
+    int cardsWon = 0; 
     log = "";
 
      while (flag)
      {
         int size = playerP2.stacksize();
         int taken = playerP2.cardesTaken();
-        cout<<" "<<taken;
-        //cout<< " "<< taken;
 
          countGame++;
          flag = 0;
@@ -90,7 +91,7 @@ void Game::playTurn(){
          card turnCard1;
          card turnCard2;
 
-
+        // first lets draw
         if(playerP1.stacksize() > 0 && playerP2.stacksize()>0){
             //each players have cards more than 0
             //take one cards from each player
@@ -98,17 +99,13 @@ void Game::playTurn(){
              turnCard2 = playerP2.getcard();
             cardsWon +=2;
         }
-
+        // if cant draw divide the cards
         else{
-            if(cardsWon ==0 )
-            {
-                throw "the cards finished";
-            }
-
             playerP1.finishRound(cardsWon/2);
             playerP1.finishRound(cardsWon/2);
+        }
 
-            
+            // now play the turn
             Value v = turnCard1.faceValue;
             Value v2 = turnCard2.faceValue;
             int num1 = turnCard1.getValue(turnCard1.valueName(v));
@@ -118,45 +115,46 @@ void Game::playTurn(){
             log += playerP2.getName() + " played " + turnCard2.valueName(v2) + ". ";
             
             
-
+            // case draw
             if(num1 == num2)
             {
                 flag =1;
-                log += " new war";
+                log += " draw.";
                 war++;
 
                 if(playerP1.stacksize() > 0 && playerP2.stacksize() > 0 )
-                {
+                {   
+                    // burning card
                     turnCard1 = playerP1.getcard();
                     turnCard2 = playerP2.getcard();
                     cardsWon +=2;
+                    //and go for another round
                 }
                 else 
-                {
+                {   //else  divide the points
                     playerP1.finishRound(cardsWon/2);
                     playerP2.finishRound(cardsWon/2);
                     flag = 0;
                 }
             }
-
+            // case player one win
             else if (num1 == 1 && num2 != 2 || num1 > num2)
-            {
+            {   
                 log += playerP1.getName() + " Wins this turn.";
                 playerP1.finishRound(cardsWon);
                 playerP2.finishRound(0);
                 
                
             }
+            // case player 2 win
             else
             {
                 log += playerP2.getName() + " Wins this turn.";
                 playerP1.finishRound(0);
                 playerP2.finishRound(cardsWon);
-            } 
-        }   
-     }}
-     
-     
+            }     
+     }
+}
     
     
 void Game :: printLastTurn(){
@@ -245,11 +243,6 @@ void Game::printStats(){
     }
     
 }
-void Game::GameOver(){
-    cout<<"reset the game"<<std::endl;
-    playerP1.setstacksize(0);
-    playerP2.setcardesTaken(0);
- }
 
 
 
